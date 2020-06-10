@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DiceGame"
         mc:Ignorable="d"
-        Title="Würfelspiel" Height="450" Width="800">
+        Title="Würfelspiel" Height="450" Width="800" 
+        Background="CadetBlue">
     <Grid Margin="10,10,10,10">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*" />
@@ -18,13 +19,15 @@
             <RowDefinition Height="2*" />
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
-        <Label Content="Die längste Reise gewinnt" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.54,-1.688" FontWeight="Bold" FontSize="24" Grid.ColumnSpan="3"/>
-        <Button Content="Würfeln" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,0,25" Width="86"/>
-        <ListBox Grid.Column="1" Grid.Row="1" Margin="0,10,0,0"/>
-        <RadioButton Content="Einer" Grid.Column="1" HorizontalAlignment="Left" Margin="180,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
-        <RadioButton Content="Zehner" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="14" Margin="0,10,0,0" />
-        <RadioButton Content="Hunderter" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Top" FontSize="14" Margin="0,10,180,0"/>
-        <Label Content="Spieler {player} ist dran!" Grid.Column="1" HorizontalAlignment="Center" Margin="0,25,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
-        <Label Content="An welche Stelle möchtest du deinen nächsten Wurf setzen?" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,25" Grid.Row="2" VerticalAlignment="Bottom" FontSize="14"/>
+        <Label Content="Die längste Reise gewinnt" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Grid.Column="1"/>
+        <Button x:Name="TossButton" Content="Würfeln" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,0,25" Width="90" Click="Toss"/>
+        <Button x:Name="NewGameButton" Content="Neues Spiel" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,0,25" Click="NewGame" Width="120" Visibility="Hidden"/>
+        <ListBox x:Name="PlayersList" Grid.Column="1" Grid.Row="1" IsEnabled="False"/>
+        <RadioButton x:Name="OnesRadio" Content="Einer" Grid.Column="1" HorizontalAlignment="Left" Margin="180,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
+        <RadioButton x:Name="TensRadio" Content="Zehner" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" FontSize="14" Margin="0,10,25,0" />
+        <RadioButton x:Name="HundredsRadio" Content="Hunderter" Grid.Column="1" HorizontalAlignment="Right" Grid.Row="3" VerticalAlignment="Top" FontSize="14" Margin="0,10,180,0"/>
+        <Label x:Name="MainLabel" Content="{}{player} ist dran!" Grid.Column="1" HorizontalAlignment="Center" Margin="0,25,0,0" Grid.Row="2" VerticalAlignment="Top" FontSize="14" FontWeight="Bold"/>
+        <Label x:Name="NextTossNoteLabel" Content="An welche Stelle möchtest du deinen nächsten Wurf setzen?" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,0,25" Grid.Row="2" VerticalAlignment="Bottom" FontSize="14"/>
+        
     </Grid>
 </Window>
