@@ -89,9 +89,7 @@ namespace DiceGame
                 HundredsRadio.IsEnabled = false;
 
             if (player.HasSelectedEverything())
-            {
-                NextPlayer();
-            }       
+                NextPlayer();     
         }
 
         private void NextPlayer()
