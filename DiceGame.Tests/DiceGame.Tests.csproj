@@ -17,8 +17,4 @@
     <PackageReference Include="SpecFlow.MsTest" Version="3.3.30" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Bindings\" />
-  </ItemGroup>
-
 </Project>
