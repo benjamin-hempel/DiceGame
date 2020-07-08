@@ -20,7 +20,7 @@
             <RowDefinition Height="2*" />
         </Grid.RowDefinitions>
         <Label Content="Die längste Reise gewinnt" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Grid.Column="1"/>
-        <Button x:Name="TossButton" Content="Würfeln" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,0,25" Width="90" Click="Toss"/>
+        <Button x:Name="TossButton" AutomationProperties.AutomationId="TossButton" Content="Würfeln" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,0,25" Width="90" Click="Toss"/>
         <Button x:Name="NewGameButton" Content="Neues Spiel" Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Bottom" FontSize="18" Margin="0,0,0,25" Click="NewGame" Width="120" Visibility="Hidden"/>
         <ListBox x:Name="PlayersList" Grid.Column="1" Grid.Row="1" IsEnabled="False"/>
         <RadioButton x:Name="OnesRadio" Content="Einer" Grid.Column="1" HorizontalAlignment="Left" Margin="180,10,0,0" Grid.Row="3" VerticalAlignment="Top" FontSize="14"/>
