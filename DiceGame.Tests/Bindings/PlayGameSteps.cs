@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Runtime.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Security.Cryptography.Xml;
 
 namespace DiceGame.Tests.Bindings
 {
@@ -41,20 +42,34 @@ namespace DiceGame.Tests.Bindings
         public void ThenTheResultForPlayerShouldNotContainAnyZeroes(string playerName)
         {
             string result = GetPlayerResult(playerName);
-            Assert.IsFalse(result.Contains('0'));
+            Assert.IsFalse(result.Contains('0'), "The result should not contain any zeroes");
         }
 
         [Then(@"the result for player ""(.*)"" should be (.*) digits long")]
         public void ThenTheResultForPlayerShouldBeDigitsLong(string playerName, int digitCount)
         {
             string result = GetPlayerResult(playerName);
-            Assert.AreEqual(digitCount, result.Length);
+            Assert.AreEqual(digitCount, result.Length, $"The result should be {digitCount} digits long");
         }
 
         [Then(@"the player with the highest score should be declared winner")]
         public void ThenThePlayerWithTheHighestScoreShouldBeDeclaredWinner()
         {
-            ScenarioContext.Current.Pending();
+            var results = GetAllResults();
+
+            string winner = "";
+            int maxResult = 0;
+            foreach(var result in results)
+            {
+                if (result.Value > maxResult)
+                {
+                    maxResult = result.Value;
+                    winner = result.Key;
+                }           
+            }
+
+            var mainLabel = MainWindow.FindFirstDescendant(x => x.ByAutomationId("MainLabel")).AsLabel();
+            Assert.AreEqual($"{winner} hat gewonnen!", mainLabel.Text, $"The winner should be {winner}");
         }
 
         [AfterScenario]
@@ -73,6 +88,30 @@ namespace DiceGame.Tests.Bindings
             string result = tokens[tokens.Length - 2];
 
             return result;
+        }
+
+        private Dictionary<string, int> GetAllResults()
+        {
+            var results = new Dictionary<string, int>();
+
+            var playersList = MainWindow.FindFirstDescendant(x => x.ByAutomationId("PlayersList")).AsListBox();
+            var items = playersList.Items.AsEnumerable();
+            foreach(var item in items)
+            {
+                var tokens = item.Text.Split(' ');
+                string playerName = tokens[0];
+                try
+                {
+                    int result = int.Parse(tokens[tokens.Length - 2]);
+                    results.Add(playerName, result);
+                }
+                catch (FormatException)
+                {
+                    Assert.Fail("Expected a number as result, but didn't get one");
+                }
+            }
+
+            return results;
         }
     }
 }
