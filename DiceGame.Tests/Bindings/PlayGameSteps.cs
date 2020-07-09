@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TechTalk.SpecFlow;
 using FlaUI.UIA3;
 using FlaUI.Core;
 using FlaUI.Core.AutomationElements;
 using System.Linq;
-using System.Threading;
-using System.Runtime.CompilerServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Security.Cryptography.Xml;
 
 namespace DiceGame.Tests.Bindings
 {
