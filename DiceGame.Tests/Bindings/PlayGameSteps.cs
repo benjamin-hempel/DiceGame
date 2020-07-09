@@ -68,6 +68,14 @@ namespace DiceGame.Tests.Bindings
             Assert.AreEqual($"{winner} hat gewonnen!", mainLabel.Text, $"The winner should be {winner}");
         }
 
+        [Then(@"the ""(.*)"" radio should be disabled")]
+        public void ThenTheRadioShouldBeDisabled(string digitName)
+        {
+            var radio = MainWindow.FindFirstDescendant(x => x.ByText(digitName)).AsRadioButton();
+            Assert.IsFalse(radio.IsEnabled, $"The radio button for {digitName} should be disabled");
+        }
+
+
         [AfterScenario]
         public void CloseDiceGameApplication()
         {

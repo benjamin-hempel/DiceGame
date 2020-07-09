@@ -13,6 +13,10 @@ Scenario: No zeroes and right amount of digits
 	Then the result for player "Jim" should not contain any zeroes
 	And the result for player "Jim" should be 3 digits long
 
+Scenario: Radio buttons disabled correctly
+	When I select the "Zehner" digit and toss
+	Then the "Zehner" radio should be disabled
+
 Scenario: Entire game round
 	When I select the "Hunderter" digit and toss
 	And I select the "Einer" digit and toss
