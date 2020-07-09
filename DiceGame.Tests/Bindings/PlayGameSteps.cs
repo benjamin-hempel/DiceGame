@@ -51,6 +51,12 @@ namespace DiceGame.Tests.Bindings
             Assert.AreEqual(digitCount, result.Length);
         }
 
+        [Then(@"the player with the highest score should be declared winner")]
+        public void ThenThePlayerWithTheHighestScoreShouldBeDeclaredWinner()
+        {
+            ScenarioContext.Current.Pending();
+        }
+
         [AfterScenario]
         public void CloseDiceGameApplication()
         {
